@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="et"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>KARDIN LOGISTICS – ladu ja vedu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0}
+:root{--w:#fcfaf8;--b:#FF6B00;--n:#141414;--s:#ffe0cc;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+html.lock{overflow:hidden}
+body{font:400 17px/1.5 'Bricolage Grotesque',system-ui,sans-serif;background:linear-gradient(var(--w),#f2ede8);color:var(--n);overflow-x:clip}
+a{color:inherit}
+#cv{position:fixed;inset:0;width:100%;height:100%;z-index:0}
+section,nav,#ld{position:relative;z-index:1}
+h1,h2{font-stretch:75%;font-weight:800;letter-spacing:-.02em;line-height:.95}
+#ld{position:fixed;inset:0;z-index:99;pointer-events:none;transition:opacity .8s}
+#ld.off{opacity:0}
+#pc{position:absolute;left:4vw;bottom:3vh;font-size:clamp(56px,12vw,160px);font-stretch:75%;font-weight:800;line-height:1;color:var(--n)}
+#ld small{position:absolute;right:4vw;bottom:4vh;color:var(--n)}
+nav{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:50;display:flex;justify-content:space-between;padding:20px 4vw;font-weight:600}
+nav div{display:flex;gap:clamp(14px,3vw,36px)}
+nav a{text-decoration:none}nav a:hover{text-decoration:underline;text-underline-offset:5px}
+.pin{position:relative}
+.stick{position:sticky;top:0;height:100svh;overflow:hidden}
+#hero{height:340vh}
+.ht{position:absolute;left:4vw;top:15svh;max-width:min(600px,60vw);opacity:0;transform:translateY(24px);transition:opacity .9s,transform .9s}
+.ht.in{opacity:1;transform:none}
+h1{font-size:clamp(42px,7vw,108px)}
+.ht p{margin:22px 0 28px;max-width:400px}
+.btn{display:inline-block;padding:15px 26px;border-radius:99px;background:var(--b);color:var(--n);text-decoration:none;font-weight:600;margin-right:8px;transition:transform .25s}
+.btn:hover{transform:translateY(-3px)}
+.btn.o{background:none;color:var(--n);box-shadow:inset 0 0 0 1.5px var(--n)}
+#st{position:absolute;left:4vw;bottom:5svh;font-weight:600;display:flex;gap:10px;align-items:center}
+#st i{width:10px;height:10px;border-radius:50%;background:var(--b);animation:pl 1.2s infinite}
+@keyframes pl{50%{opacity:.2}}
+#map{height:360vh}
+#map .stick{display:grid;grid-template-columns:minmax(260px,34%) 1fr;align-items:center;padding:0 4vw}
+#map h2{font-size:clamp(38px,5.4vw,84px)}
+#map p{margin:20px 0 34px;max-width:340px}
+#mt{font-size:clamp(22px,2.6vw,36px);font-stretch:75%;font-weight:700;min-height:2.6em}
+#mt span{display:block;font-size:.55em;font-weight:400;font-stretch:100%;color:var(--n)}
+.lb{position:absolute;transform:translate(-50%,-190%);background:var(--b);color:var(--n);font-weight:600;font-size:14px;padding:4px 10px;border-radius:99px;opacity:0;transition:opacity .35s;white-space:nowrap}
+#why{padding:18vh 4vw;display:grid;grid-template-columns:1fr 1.4fr;gap:6vw;background:#fff}
+#why .hd{position:sticky;top:18vh;align-self:start}
+#why h2{font-size:clamp(40px,6vw,92px)}
+#why .hd p{margin-top:24px;max-width:380px}
+.it{display:grid;grid-template-columns:minmax(150px,.8fr) 1.2fr;gap:24px;align-items:baseline;padding:34px 0;border-top:1.5px solid var(--b)}
+.it .n{font-size:clamp(44px,6vw,92px);font-stretch:75%;font-weight:800;line-height:1;white-space:nowrap;background:linear-gradient(transparent 68%,var(--b) 68%);width:fit-content}
+.it h3{font-size:22px;font-weight:700;margin-bottom:6px}
+#price{height:380vh}
+#price .hd{position:absolute;left:4vw;top:13svh;right:4vw;display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap}
+#price h2{font-size:clamp(40px,6vw,92px);background:linear-gradient(transparent 68%,var(--b) 68%)}
+#price .hd p{max-width:320px}
+.pp{position:absolute;left:50%;top:57%;width:min(740px,92vw);transform:translate(-50%,-50%) scale(var(--s,.2));opacity:var(--o,0);background:rgba(20,20,20,.95);color:#fff;border-radius:20px;padding:8px 5%;box-shadow:0 30px 80px rgba(255,107,0,.4)}
+.row{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;padding:12px 0;border-bottom:1px solid #3a3a3a}
+.row:last-child{border:0}
+.row b{font-size:clamp(15px,1.9vw,22px);font-weight:600}
+.row small{display:block;color:#d9a37a;font-size:clamp(11px,1.2vw,14px)}
+.pv{font-size:clamp(24px,3.4vw,44px);font-stretch:75%;font-weight:800;text-align:right;white-space:nowrap}
+.pv em{font-style:normal;font-size:.38em;font-weight:500;font-stretch:100%;color:#d9a37a;margin-left:4px}
+#contact{background:var(--b);color:var(--n);padding:18vh 4vw 6vh}
+#contact h2{font-size:clamp(46px,9vw,150px);max-width:11ch}
+.cg{display:grid;grid-template-columns:1fr 1fr;gap:6vw;margin-top:9vh}
+.cg dl{display:grid;gap:26px}
+.cg dt{color:#7a3500;font-size:15px}
+.cg dd{font-size:clamp(20px,2.4vw,30px);font-weight:600}
+.cg dd a{text-decoration:none;border-bottom:1.5px solid rgba(20,20,20,.4)}
+form{display:grid;gap:14px}
+input,textarea{font:inherit;color:var(--n);background:none;border:0;border-bottom:1.5px solid rgba(20,20,20,.45);padding:14px 0;outline:0;resize:none;width:100%}
+input::placeholder,textarea::placeholder{color:rgba(20,20,20,.55)}
+input:focus,textarea:focus{border-color:var(--n)}
+form button{justify-self:start;font:inherit;font-weight:600;background:var(--n);color:#fff;border:0;border-radius:99px;padding:16px 30px;cursor:pointer;margin-top:8px}
+form button:focus-visible,.btn:focus-visible,nav a:focus-visible{outline:2px solid var(--n);outline-offset:3px}
+.ft{display:flex;justify-content:space-between;margin-top:14vh;color:rgba(20,20,20,.65);font-size:15px;gap:12px;flex-wrap:wrap}
+@media(max-width:800px){
+ .ht{max-width:80vw;top:12svh}.ht p{display:none}
+ #map .stick{grid-template-columns:1fr;align-content:start;padding-top:12svh}
+ #map p{display:none}#mt{min-height:0}
+ #why{grid-template-columns:1fr;gap:40px}#why .hd{position:static}
+ .it{grid-template-columns:1fr;gap:8px}.cg{grid-template-columns:1fr}
+ .row small,#price .hd p{display:none}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body>
+<canvas id="cv"></canvas>
+<div id="ld"><div id="pc">0</div><small>KARDIN LOGISTICS laeb…</small></div>
+<nav><a href="#hero"><b>KARDIN</b></a><div><a href="#map">Suunad</a><a href="#why">Eelised</a><a href="#price">Hinnad</a><a href="#contact">Kontakt</a></div></nav>
+
+<section id="hero" class="pin"><div class="stick">
+<div class="ht" id="ht"><h1>Sinu kaup.<br>Meie ladu.<br>Meie veokid.</h1><p>Ladustamine, komplekteerimine ja vedu üle Eesti ja Baltikumi – kõik ühest kohast.</p><a class="btn" href="#contact">Küsi pakkumist</a><a class="btn o" href="#price">Vaata hindu</a></div>
+<div id="st"><i></i><span id="stt">Veok läheneb dokile</span></div></div></section>
+
+<section id="map" class="pin"><div class="stick" id="ms">
+<div><h2>Tallinnast igale poole.</h2><p>Iga päev väljuvad meie fuurid kõikidesse Eesti suurematesse linnadesse – kindla graafiku järgi.</p><div id="mt">Tallinn<span>Väljumine Muugalt</span></div></div></div></section>
+
+<section id="why"><div class="hd"><h2>Kõik on meie enda käes.</h2><p>Ladu, veokid ja juhid kuuluvad meile. Seetõttu teame igal hetkel, kus sinu kaup on.</p></div><div id="li"></div></section>
+
+<section id="price" class="pin"><div class="stick">
+<div class="hd"><h2>Hinnad.</h2><p>Hinnad on ilma käibemaksuta. Täpse pakkumise saadame ühe tunni jooksul.</p></div>
+<div class="pp" id="pp"></div></div></section>
+
+<section id="contact"><h2>Räägime sinu veosest.</h2>
+<div class="cg"><dl><div><dt>Telefon</dt><dd><a href="tel:+37256004400">+372 5600 4400</a></dd></div><div><dt>E-post</dt><dd><a href="mailto:info@kardinlogistics.ee">info@kardinlogistics.ee</a></dd></div><div><dt>Ladu ja kontor</dt><dd>Logistikapargi 7, Muuga, Harju maakond</dd></div><div><dt>Lahtiolekuajad</dt><dd>E–R 8:00–18:00, dispetšer 24/7</dd></div></dl>
+<form id="fm"><input placeholder="Nimi" aria-label="Nimi" required><input type="email" placeholder="E-post" aria-label="E-post" required><textarea rows="3" placeholder="Kirjelda veost: mida, kuhu, millal" aria-label="Veose kirjeldus"></textarea><button>Saada päring</button></form></div>
+<div class="ft"><span>© 2026 KARDIN LOGISTICS OÜ</span><span>Registrikood 16 000 000</span></div></section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+const $=s=>document.querySelector(s),cl=(v,a=0,b=1)=>Math.min(b,Math.max(a,v)),ez=t=>1-Math.pow(1-t,3),root=document.documentElement,K=THREE,V=(x,y,z)=>new K.Vector3(x,y,z);
+root.classList.add('lock');
+/* scene */
+const R=new K.WebGLRenderer({canvas:$('#cv'),antialias:true,alpha:true});R.setPixelRatio(Math.min(devicePixelRatio,2));
+const sc=new K.Scene();sc.fog=new K.Fog(0xf5f1ec,80,260);
+const cam=new K.PerspectiveCamera(32,1,.1,500);
+sc.add(new K.HemisphereLight(0xffffff,0xffc799,1.1));const dl=new K.DirectionalLight(0xffffff,.85);dl.position.set(10,25,12);sc.add(dl);
+const gr=new K.Mesh(new K.PlaneGeometry(1400,1400),new K.MeshBasicMaterial({color:0xf2ede8}));gr.rotation.x=-Math.PI/2;sc.add(gr);
+const gh=new K.GridHelper(1400,350,0xe6dcd2,0xefe8e0);gh.position.y=.01;sc.add(gh);
+const M=c=>new K.MeshStandardMaterial({color:c,roughness:.5,metalness:.05}),mW=M(0xffffff),mB=M(0xFF6B00),mN=M(0x141414),mS=M(0xffe0cc);
+const bx=(p,w,h,d,x,y,z,m)=>{const o=new K.Mesh(new K.BoxGeometry(w,h,d),m);o.position.set(x,y,z);p.add(o);return o};
+const tex=(t,bg,fg)=>{const c=document.createElement('canvas');c.width=1024;c.height=256;const x=c.getContext('2d');x.fillStyle=bg;x.fillRect(0,0,1024,256);x.fillStyle=fg;x.font='800 170px Arial Narrow,Arial,sans-serif';x.textAlign='center';x.textBaseline='middle';x.fillText(t,512,140);return new K.CanvasTexture(c)};
+const lm=new K.MeshBasicMaterial({map:tex('KARDIN','#ffffff','#141414')});
+function truck(){
+ const g=new K.Group(),cab=new K.Group(),tr=new K.Group(),wl=[];g.add(cab,tr);
+ bx(cab,2.2,.4,2.8,0,.8,-1.2,mN);bx(cab,2.3,2.1,2.2,0,2.05,-1.3,mB);bx(cab,2,.9,.08,0,2.55,-2.42,mN);bx(cab,2.34,.3,2.2,0,1.2,-1.3,mN);
+ bx(tr,2.2,.4,6.2,0,.8,3,mN);
+ const t=new K.Mesh(new K.BoxGeometry(2.5,2.9,6),[mW,mW,mW,mS,mN,mW]);t.position.set(0,2.55,3);tr.add(t);
+ bx(tr,2.54,.45,5.6,0,1.75,3,mB);
+ [1,-1].forEach(s=>{const p=new K.Mesh(new K.PlaneGeometry(4.2,1.05),lm);p.position.set(s*1.27,3.1,3);p.rotation.y=s*Math.PI/2;tr.add(p)});
+ [[-1.4,cab],[4.4,tr],[5.5,tr]].forEach(([z,p])=>[1.2,-1.2].forEach(x=>{const o=new K.Group(),w=new K.Group();w.rotation.z=Math.PI/2;w.add(new K.Mesh(new K.CylinderGeometry(.55,.55,.45,20),mN),new K.Mesh(new K.CylinderGeometry(.27,.27,.5,12),mS));o.add(w);o.position.set(x,.55,z);p.add(o);wl.push(o)}));
+ const sh=new K.Mesh(new K.PlaneGeometry(3.6,10),new K.MeshBasicMaterial({color:0x141414,transparent:true,opacity:.12}));sh.rotation.x=-Math.PI/2;sh.position.set(0,.03,2);g.add(sh);
+ const dd=[1,-1].map(s=>{const p=new K.Group();p.position.set(s*1.25,2.55,6.04);bx(p,1.25,2.9,.07,-s*.625,0,0,mW);tr.add(p);return{p,s}});
+ return{g,cab,tr,wl,dd}}
+const spin=(T,zc,zt)=>T.wl.forEach((w,i)=>w.rotation.x=(i<2?zc:zt)/.55);
+/* hero: warehouse + truck */
+const H=truck();sc.add(H.g);
+const wh=new K.Group();sc.add(wh);
+bx(wh,16,4,12,0,2,12,mW);bx(wh,16.6,.35,12.6,0,4.1,12,mB);
+const rf=new K.Mesh(new K.PlaneGeometry(12,3),new K.MeshBasicMaterial({map:tex('KARDIN LADU','#FF6B00','#141414')}));rf.rotation.x=-Math.PI/2;rf.position.set(0,4.3,12);wh.add(rf);
+for(let i=0;i<5;i++)for(let j=0;j<2;j++)bx(wh,2.2,.15,.8,-6.4+i*3.2,4.35,7.3+j*9,mS);
+bx(wh,5,.3,1.8,0,3.4,5.3,mB);bx(wh,.3,3.4,.3,-2.3,1.7,4.5,mN);bx(wh,.3,3.4,.3,2.3,1.7,4.5,mN);
+const lt=new K.MeshStandardMaterial({color:0xffa866,emissive:0xFF6B00,emissiveIntensity:0});bx(wh,.4,.4,.4,-1.7,.3,5.7,lt);bx(wh,.4,.4,.4,1.7,.3,5.7,lt);
+[[10,-6],[13,-14],[10,-22]].forEach(([x,z])=>bx(sc,2.5,2.9,6,x,1.9,z,mW).add(new K.Mesh(new K.BoxGeometry(2.54,.45,5.6),mB)));
+const rd=new K.Mesh(new K.PlaneGeometry(7,140),new K.MeshBasicMaterial({color:0x2a2a2a}));rd.rotation.x=-Math.PI/2;rd.position.set(0,.02,-44);sc.add(rd);
+const rl=new K.Mesh(new K.PlaneGeometry(.18,140),new K.MeshBasicMaterial({color:0xffe0cc}));rl.rotation.x=-Math.PI/2;rl.position.set(0,.03,-44);sc.add(rl);
+/* map */
+const s=.06,mg=new K.Group();mg.position.set(60,0,0);sc.add(mg);
+const L=[[599,59],[529,62],[455,44],[399,32],[353,36],[292,53],[232,71],[186,107],[177,151],[167,195],[180,222],[213,249],[269,249],[260,311],[255,343],[315,323],[362,340],[408,364],[455,400],[529,405],[557,364],[548,311],[534,266],[520,213],[501,178],[548,142],[575,107]];
+[L,[[37,266],[74,213],[130,222],[158,266],[121,311],[56,311]],[[37,160],[84,124],[130,151],[111,186],[65,181]]].forEach(pts=>{const sh=new K.Shape();pts.forEach(([x,y],i)=>i?sh.lineTo(x*s,-y*s):sh.moveTo(x*s,-y*s));const ge=new K.ExtrudeGeometry(sh,{depth:.5,bevelEnabled:false}),m=new K.Mesh(ge,mN);m.rotation.x=-Math.PI/2;m.add(new K.LineSegments(new K.EdgesGeometry(ge),new K.LineBasicMaterial({color:0xFF6B00})));mg.add(m)});
+const TL=[292,64],C=[["Haapsalu",180,153,98,"1 h 30 min",16],["Pärnu",269,252,129,"1 h 50 min",-14],["Kuressaare",82,275,214,"3 h 50 min (koos parvlaevaga)",-30],["Valga",413,359,267,"3 h 15 min",-26],["Võru",501,348,283,"3 h 30 min",26],["Tartu",475,252,186,"2 h 30 min",24],["Rakvere",442,80,100,"1 h 20 min",-8],["Narva",599,75,211,"2 h 30 min",-14]];
+const P3=(x,y)=>V(x*s,.62,y*s),SEG=48,routes=C.map(([n,x,y,,,k])=>{const mx=(TL[0]+x)/2,my=(TL[1]+y)/2,vx=x-TL[0],vy=y-TL[1],l=Math.hypot(vx,vy),cu=new K.QuadraticBezierCurve3(P3(...TL),P3(mx-vy/l*k,my+vx/l*k),P3(x,y)),m=new K.Mesh(new K.TubeGeometry(cu,SEG,.11,6),new K.MeshStandardMaterial({color:0xFF6B00,emissive:0xFF6B00,emissiveIntensity:.35}));m.geometry.setDrawRange(0,0);mg.add(m);const pin=new K.Mesh(new K.CylinderGeometry(.22,.22,.5,16),mB);pin.position.copy(P3(x,y));pin.position.y=.75;mg.add(pin);
+ const lb=document.createElement('div');lb.className='lb';lb.textContent=n;$('#ms').appendChild(lb);return{cu,m,lb,w:V(60+x*s,1.5,y*s)}});
+const tlp=new K.Mesh(new K.CylinderGeometry(.4,.4,.8,20),mW);tlp.position.copy(P3(...TL));tlp.position.y=.9;mg.add(tlp);
+const ring=new K.Mesh(new K.RingGeometry(.5,.62,32),new K.MeshBasicMaterial({color:0xFF6B00,transparent:true}));ring.rotation.x=-Math.PI/2;ring.position.copy(P3(...TL));ring.position.y=.65;mg.add(ring);
+const tlb=document.createElement('div');tlb.className='lb';tlb.textContent='Tallinn';tlb.style.opacity=0;$('#ms').appendChild(tlb);const tlw=V(60+TL[0]*s,1.6,TL[1]*s);
+const MT=truck();MT.g.scale.setScalar(.14);mg.add(MT.g);
+/* price truck + loader truck */
+const PT=truck();PT.g.position.set(130,0,0);sc.add(PT.g);
+const LT=truck();LT.g.position.set(-60,0,0);sc.add(LT.g);
+/* content */
+const W=[[3800,"m²","Oma ladu","Soe, valvatud ladu Muugal. Ladustame, komplekteerime ja laadime ühes kohas."],[32,"","Oma veokit","Kõik fuurid kuuluvad meile ja on alla kolme aasta vanused. Vahendajaid pole."],[24,"/7","Reaalajas jälgimine","GPS-iga näed oma veose asukohta igal hetkel."],[98.4,"%","Vedusid õigeaegselt","Mõõdame iga vedu ja ütleme kohalejõudmise aja ette."],[100000,"€","CMR-kindlustus","Iga vedu on kindlustatud kuni 100 000 euroni."]];
+const fm=(v,d)=>v.toFixed(d).replace('.',',').replace(/\B(?=(\d{3})+(?!\d))/g,'\u00a0');
+$('#li').innerHTML=W.map(([v,s,t,p])=>`<div class="it"><div class="n" data-v="${v}" data-d="${v%1?1:0}" data-s="${s}">0${s}</div><div><h3>${t}</h3><p>${p}</p></div></div>`).join('');
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;io.unobserve(e.target);const el=e.target,v=+el.dataset.v,d=+el.dataset.d,s=el.dataset.s,a=performance.now();(function f(){const t=cl((performance.now()-a)/1400);el.textContent=fm(v*ez(t),d)+s;if(t<1)requestAnimationFrame(f)})()}),{threshold:.6});
+document.querySelectorAll('.n').forEach(n=>io.observe(n));
+const PR=[["Täisfuur Tallinn–Tartu","33 kaubaalust, kuni 24 t",290,0,"€ / vedu"],["Täisfuur Tallinn–Pärnu","33 kaubaalust, kuni 24 t",260,0,"€ / vedu"],["Täisfuur Tallinn–Narva","33 kaubaalust, kuni 24 t",340,0,"€ / vedu"],["Osavedu üle Eesti","1–10 kaubaalust, kokkulepitud graafik",24,0,"€ / kaubaalus"],["Rahvusvaheline vedu","Läti, Leedu, Poola",.95,2,"€ / km"],["Ladustamine","Soe ladu, ligipääs 24/7",8,0,"€ / koht kuus"]];
+$('#pp').innerHTML=PR.map(([n,s,,,u])=>`<div class="row"><div><b>${n}</b><small>${s}</small></div><div class="pv">0<em>${u}</em></div></div>`).join('');
+const rows=[...document.querySelectorAll('.row')],pp=$('#pp');
+$('#fm').onsubmit=e=>{e.preventDefault();e.target.innerHTML='<h3 style="font-size:28px;font-weight:700">Aitäh! Vastame ühe tunni jooksul.</h3>'};
+/* camera */
+const LP={p:V(-39,4.6,7.6),t:V(-60,1.9,.5)},HP={p:V(-9,19,23),t:V(0,0,3)},MP={p:V(79,36,35),t:V(79,0,10)};
+function rs(){R.setSize(innerWidth,innerHeight,false);cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix()}addEventListener('resize',rs);rs();
+const el=s=>document.querySelector(s),hero=el('#hero'),map=el('#map'),price=el('#price'),mt=el('#mt'),stt=el('#stt'),ht=el('#ht');
+const S={};const sm=(k,t)=>S[k]=S[k]===undefined?t:S[k]+(t-S[k])*.14;
+const t0=performance.now();let ready=false,gone=false;
+const tmpP=V(0,0,0),tmpT=V(0,0,0),pt=V(0,0,0);
+function loop(){
+ const now=(performance.now()-t0)/1000,vh=innerHeight;
+ /* loader */
+ document.getElementById('pc').textContent=Math.round(ez(cl(now/2.6))*100);
+ LT.tr.position.z=14*(1-ez(cl((now-.6)/1.5)));LT.g.position.z=-ez(cl((now-2.7)/.9))*34;
+ spin(LT,LT.g.position.z,LT.g.position.z+LT.tr.position.z);
+ if(now>3&&!gone){gone=true;el('#ld').classList.add('off');ht.classList.add('in')}
+ if(now>4.4&&!ready){ready=true;root.classList.remove('lock');el('#ld').style.display='none'}
+ const ft=ez(cl((now-3)/1.6));
+ /* sections */
+ const rH=hero.getBoundingClientRect(),rM=map.getBoundingClientRect(),rP=price.getBoundingClientRect();
+ const p=sm('h',cl(-rH.top/(rH.height-vh))),m=sm('m',cl(-rM.top/(rM.height-vh))),r=sm('p',cl(-rP.top/(rP.height-vh)));
+ const t1=ez(cl(1-rM.top/vh)),t2=ez(cl(1-rP.top/vh));
+ /* hero truck */
+ const hz=-30*(1-ez(cl(p/.7)));H.g.position.z=hz;spin(H,hz,hz);
+ lt.emissiveIntensity=cl((p-.68)/.1)*1.4;
+ stt.textContent=p<.6?'Veok läheneb dokile':p<.72?'Dokk 4 on avatud':'Lastimine käib';
+ if(ready||gone)ht.style.opacity=gone?cl(1-(p-.7)/.2):0;
+ /* map */
+ const n=C.length,act=Math.min(n-1,Math.floor(m*n*1.04));
+ routes.forEach((o,i)=>{const q=cl(m*n*1.04-i);o.m.geometry.setDrawRange(0,Math.floor(q*SEG)*36);o.q=q});
+ const q=routes[act].q,cu=routes[act].cu;cu.getPoint(q,pt);cu.getPoint(Math.max(0,q-.02),tmpP);
+ MT.g.position.copy(m<.01?V(TL[0]*s,.5,TL[1]*s):pt);MT.g.position.y=.5;MT.g.rotation.y=Math.atan2(-(pt.x-tmpP.x),-(pt.z-tmpP.z));
+ const mz=pt.z;spin(MT,m*300,m*300);
+ mt.innerHTML=m<.01?'Tallinn<span>Väljumine Muugalt</span>':`Tallinn → ${C[act][0]}<span>${C[act][3]} km · umbes ${C[act][4]}</span>`;
+ ring.scale.setScalar(1+(now%2)*1.6);ring.material.opacity=1-(now%2)/2;
+ const show=t1>.97&&rM.top<=1&&rM.bottom>vh;
+ [...routes.map(o=>[o.w,o.lb,o.q>.97]),[tlw,tlb,true]].forEach(([w,lb,ok])=>{const v=w.clone().project(cam);lb.style.left=(v.x*.5+.5)*innerWidth+'px';lb.style.top=(-v.y*.5+.5)*innerHeight+'px';lb.style.opacity=show&&ok?1:0});
+ /* price */
+ const dd=ez(cl((r-.4)/.25)),pa=ez(cl((r-.62)/.3));
+ PT.dd.forEach(({p,s})=>p.rotation.y=s*dd*1.75);
+ pp.style.setProperty('--s',.2+.8*pa);pp.style.setProperty('--o',cl(pa*2));
+ rows.forEach((row,i)=>{const o=cl(pa*1.6-i*.1),v=PR[i];row.style.opacity=o;row.querySelector('.pv').firstChild.textContent=fm(v[2]*ez(o),v[3])});
+ /* camera pose */
+ const ph=1.35*(1-ez(cl(r/.4))),PP={p:V(130+15*Math.sin(ph),3+2*Math.sin(ph),3+15*Math.cos(ph)),t:V(130,2.4,4.5)};
+ MP.p.set(79,0,10).addScaledVector(V(0,.82,.57),38/(innerWidth>800?.58:.95)/(2*.2867*cam.aspect));tmpP.copy(HP.p).lerp(MP.p,t1).lerp(PP.p,t2);tmpT.copy(HP.t).lerp(MP.t,t1).lerp(PP.t,t2);
+ tmpP.lerp(tmpP,0);cam.position.copy(LP.p).lerp(tmpP,ft);const tg=LP.t.clone().lerp(tmpT,ft);cam.lookAt(tg);
+ const off=(innerWidth>800?.16+.03*t1:0)*(1-t2)*ft,oy=(innerWidth>800?0:.1)*t1*(1-t2)*ft;cam.setViewOffset(innerWidth,innerHeight,-innerWidth*off,-innerHeight*oy,innerWidth,innerHeight);
+ R.render(sc,cam);requestAnimationFrame(loop)}
+loop();
+</script></body></html>
